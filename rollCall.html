@@ -1,187 +1,327 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Title Page</title>
 
-		<!-- Bootstrap CSS -->
-		<link href="./css/bootstrap.min.css" rel="stylesheet">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>简易点名</title>
 
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
+	<!-- Bootstrap CSS -->
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-	</head>
-	<style>
+</head>
+<style>
 	.banji {
 		margin-top: 5%;
 	}
 	.names{
 		margin-top: 200px;
 	}
-	body{
-		/* background: rgb(238,238,238); */
+	/* body{
+		background: rgb(238,238,238);
+	} */
+	
+	#listName div {
+		margin-top: 20px;
+		margin-left: 5px;
+		font-size: 20px;
+		border-style: solid;
+		border-color: rgb(255, 255, 255);
 	}
+	.newactive {
+        background-color: #00ffff;
+    }
 	</style>
-	<body>
-		<ul id="myTab" class="nav nav-tabs">
-			<li class="active">
-				<a href="#home" data-toggle="tab">
-					点名
-				</a>
-			</li>
-			<li><a href="#input" data-toggle="tab">导入数据</a></li>
-			<li>
-				<a href="#shuoming" data-toggle="tab">帮助</a>
-			</li>
-		</ul>
-		<div id="myTabContent" class="tab-content">
-			<div class="tab-pane fade in active" id="home">
-				<div class="container middle">
-					<div class="row">
-						<div class=" center-bloc banji col-md-6 col-md-offset-3">
-								<div class="panel-body">
-									<select name="banji" id="banji" class="form-control input-lg" required="required" >
-		
-									</select>
-									
-									<!-- <button type="button" class="btn btn-large btn-block btn-default">button</button> -->
-									
-									<button id="kaiguan" type="button" class="btn btn-block btn-lg btn-primary" onclick="showNames()" style="margin-top: 20px;">开始</button>
-									
-									<input type="range" name="slider-1" id="slider-1" style="margin-top: 20px;"
-										min="1" max="500" step="1" value="70" onchange="
+
+<body>
+	<ul id="myTab" class="nav nav-tabs">
+		<li class="active">
+			<a href="#rollCall" data-toggle="tab">点名</a>
+		</li>
+		<li>
+			<a href="#rollCall2" data-toggle="tab">点名模式2</a>
+		</li>
+		<li>
+			<a href="#input" data-toggle="tab">导入数据</a>
+		</li>
+		<li>
+			<a href="#help" data-toggle="tab">帮助</a>
+		</li>
+		<li>
+			<a href="#test" data-toggle="tab">测试</a>
+		</li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<!-- 首页 -->
+		<div class="tab-pane fade in active" id="rollCall">
+			<div class="container middle">
+				<div class="row">
+					<div class=" center-bloc banji col-md-6 col-md-offset-3">
+						<div class="panel-body">
+
+							<select name="banji" id="banji" class="form-control input-lg" onclick="showcall();" required="required">
+								<option value="null">请选择班级</option>
+							</select>
+
+							<button id="switch" type="button" class="btn btn-block btn-lg btn-primary" onclick="showNames();" style="margin-top: 20px;">开始</button>
+
+							<input type="range" name="slider-1" id="slider-1" style="margin-top: 20px;" min="1" max="500" step="1" value="70"
+							 onchange="
 											$('#names').css('font-size',  parseInt($('#slider-1').val()) );
 											$('#range_val').text(parseInt($('#slider-1').val()));
 										">
-									</div>字体大小：<span id="range_val">70</span>
-								</div>
+
+						</div>
+						字体大小：<span id="range_val">70</span>
+					</div>
+				</div>
+			</div>
+
+			<h1 class="names text-center" id="names" style="font-size: 70px;"></h1>
+		</div>
+
+		<!-- 点名模式2 -->
+		<div class="tab-pane fade" id="rollCall2">
+				<div class="container middle">
+					<div class="row">
+						<div class=" center-bloc banji col-md-6 col-md-offset-3">
+							<div class="panel-body">
+	
+								<select name="banji" id="banji2" class="form-control input-lg" onclick="showcall();" required="required">
+									<option value="null">请选择班级</option>
+								</select>
+	
+								<button id="switch2" type="button" class="btn btn-block btn-lg btn-primary" onclick="showNames2();" style="margin-top: 20px;">开始</button>
+	
+								<!-- <input type="range" name="slider-1" id="slider-1" style="margin-top: 20px;" min="1" max="500" step="1" value="70"
+								 onchange="
+											$('#names').css('font-size',  parseInt($('#slider-1').val()) );
+											$('#range_val').text(parseInt($('#slider-1').val()));
+										"> -->
+	
+							</div>
+							<!-- 字体大小：<span id="range_val">70</span> -->
 						</div>
 					</div>
-		
-					<h1 class="names text-center" id="names" style="font-size: 70px;"></h1>
-			</div>
-			<div class="tab-pane fade" id="input">
-				<div class="container middle">
-					
-					<div class="page-header">
-						<h1>数据导入 <small>支持多选</small></h1>
-					</div>
-					<button type="button" class="btn btn-primary" onclick="$('#files').click();">选择txt文件</button>
-					<input type="file" name="files" id="files" onchange="handleFileSelect(event)" multiple="multiple" style="display:none">
-					<blockquote style="margin-top: 20px;">
-							<p id="list"></p>
-						</blockquote>
-
-					<div class="page-header">
-						<h1>json数据生成</h1>
-					</div>
-					
-					<button type="button" class="btn btn-primary" onclick="showJSON()">显示json数据</button>
-					<blockquote style="margin-top: 20px;">
-						<p id="json"></p>
-					</blockquote>
 				</div>
-					
-					
-
-			</div>
-			<div class="tab-pane fade" id="shuoming">
+	
 				<div class="container middle">
-					<iframe frameborder="0" src="./使用帮助.html" height="900" width="100%" seamless>
+					<div class="row" id="listName">
+					</div>
+				</div>
+	
+			</div>
 
-					</iframe>
+		<!-- 数据导入界面 -->
+		<div class="tab-pane fade" id="input">
+			<div class="container middle">
+
+				<div class="page-header">
+					<h1>数据导入 <small>支持多选</small></h1>
+				</div>
+				<button type="button" class="btn btn-primary" onclick="$('#files').click();">选择txt文件</button>
+				<input type="file" name="files" id="files" onchange="handleFileSelect(event)" multiple="multiple" style="display:none">
+				<blockquote style="margin-top: 20px;">
+					<p id="list"></p>
+				</blockquote>
+
+				<div class="page-header">
+					<h1>json数据生成</h1>
+				</div>
+
+				<button type="button" class="btn btn-primary" onclick="showJSON()">显示json数据</button>
+				<blockquote style="margin-top: 20px;">
+					<p id="json"></p>
+				</blockquote>
+			</div>
+
+		</div>
+
+		<!-- 帮助界面 -->
+		<div class="tab-pane fade" id="help">
+			<div class="container middle">
+				<iframe frameborder="0" src="./使用帮助.html" height="900" width="100%" seamless>
+
+				</iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="test">
+
+			<button type="button" class="btn btn-default" onclick="showcall()">button</button>
+
+			<div class="container middle">
+				<div class="row" id="test1">
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- jQuery -->
-		<script src="./js/jquery-1.12.4.min.js"></script>
-		<!-- Bootstrap JavaScript -->
-		<script src="./js/bootstrap.min.js"></script>
-		<script type="text/javascript">
-			//定义一个定时器
-			var t;
-			var i = 0;
-			// 数据源
-			var json = {
-				'1609班' : ['金先猛','吴祥早','陈龙弟','班华森','罗思敢','龙达逸', '刘奕彤','韦彩玲','周莎莎','岑 肥','黄宝淞','陆雨珊','韦金凤','梁建佳','杨朕尧','黄定发','吴永言','陈功盼','杨绍想','黄元杨','罗再杰','王艳想','唐玉玲','韦武东','索国稳','韦 唯','邓思思','李先取','牙桂伟','周锌豪','何 锐','龙源慧','杨昌怡','张昌颖','吴耀璐','韦玉林','邓惠琳','马才力','崖琼方','杨 源','韦卫雄','龙恒鋆','覃小慧','陈威橦','王俊皓','姚懿珊','罗润龙','蒙 迷','潘锦兰','胡佳龙','彭高涛','韦致旋','刘晓庆','杨 腾']
+	<!-- jQuery -->
+	<script src="./js/jquery-1.12.4.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="./js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		//定义一个定时器
+		var t;
+		var i = 0;
+		// 数据源
+		var json = {
+			'1609班': ['金先猛', '吴祥早', '陈龙弟', '班华森', '罗思敢', '龙达逸', '刘奕彤', '韦彩玲', '周莎莎', '岑肥', '黄宝淞', '陆雨珊', '韦金凤', '梁建佳', '杨朕尧',
+				'黄定发', '吴永言', '陈功盼', '杨绍想', '黄元杨', '罗再杰', '王艳想', '唐玉玲', '韦武东', '索国稳', '韦唯', '邓思思', '李先取', '牙桂伟', '周锌豪', '何锐',
+				'龙源慧', '杨昌怡', '张昌颖', '吴耀璐', '韦玉林', '邓惠琳', '马才力', '崖琼方', '杨源', '韦卫雄', '龙恒鋆', '覃小慧', '陈威橦', '王俊皓', '姚懿珊', '罗润龙',
+				'蒙迷', '潘锦兰', '胡佳龙', '彭高涛', '韦致旋', '刘晓庆', '杨腾'
+			]
+		}
+
+		$(function () {
+			xiala();
+		})
+		// 初始化下拉菜单
+		function xiala() {
+			$('#banji').empty()
+			var opp = "<option value='null'>请选择班级</option>";
+			$('#banji').append(opp);
+			for (var value in json) {
+				var opp = "<option value='" + value + "'>" + value + "</option>";
+				$('#banji').append(opp);
 			}
+			
+			$('#banji2').empty()
+			var opp = "<option value='null'>请选择班级</option>";
+			$('#banji2').append(opp);
+			for (var value in json) {
+				var opp = "<option value='" + value + "'>" + value + "</option>";
+				$('#banji2').append(opp);
+			}
+		}
+		// 打印名单到页面上
+		function showcall() {
+			$('#listName').empty()
+			var banji = $('#banji2').val();
+			for (var i in json[banji]) {
+				var opp = "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' id='" + json[banji][i] + "'><p>" + json[banji][i] +
+					"</p></div>";
+				$('#listName').append(opp);
+			}
+		}
+		//生成名字
+		function showNames() {
+			// 开关状态切换
+			var banji = $('#banji').val();
 
-			$(function() {
-				xiala();
-			})
-			// 初始化下拉菜单
-			function xiala() {
-				$('#banji').empty()
-				for (var value in json){
-					var opp = "<option value='"+value+"'>"+value+"</option>";
-					$('#banji').append(opp);
+			if (document.getElementById('switch').innerHTML === "开始") {
+				document.getElementById('switch').innerHTML = "结束";
+
+				clearInterval(t);
+				var speed = 30;
+				var myFunction = function () {
+					var n = 0; //随机数最小值
+					var m = json[banji].length; // 随机数最大值
+					var i = parseInt(Math.random() * (m - n) + n);
+					var id = json[banji][i];
+					document.getElementById("names").innerHTML = json[banji][i];
 				}
+				t = setInterval(myFunction, speed);
+			} else {
+				// 结束抽奖
+				clearInterval(t);
+
+				document.getElementById('switch').innerHTML = "开始";
 			}
+		}
 
-			//生成名字
-			function showNames() {
-				// 开关状态切换
-				if(document.getElementById('kaiguan').innerHTML==="开始"){
-					document.getElementById('kaiguan').innerHTML="结束";
+		function showNames2() {
+			var speed = 200;
+			var banji2 = $('#banji2').val();
+			if (document.getElementById('switch2').innerHTML === "开始") {
+				document.getElementById('switch2').innerHTML = "结束";
 
-					clearInterval(t);
-					var banji = $('#banji').val();
-					t = setInterval(function() {
-						var n = 0; //随机数最小值
-						var m = json[banji].length; // 随机数最大值
-						var i = parseInt(Math.random()*(m-n)+n);
-						console.log(i)
-						// if(i==n){
-						// 	console.log(i)
-						// }
-						// if(i==m-1){
-						// 	console.log(i)
-						// }
-						document.getElementById("names").innerHTML = json[banji][i];
-					}, 30);
-				}else{
-
-					clearInterval(t);
-					document.getElementById('kaiguan').innerHTML="开始";
-				}
-			}
-			// 导入文件处理
-			function handleFileSelect(event) {
-				var files = event.target.files; // FileList object
+				clearInterval(t);
 				
-				for (var i = 0, f; f = files[i]; i++) {
-					var reader = new FileReader();
-					reader.onload = (function (theFile) {
-						return function (e) {
-							var span = document.createElement('span');
-							var filesName = theFile.name;
-							console.log(e.target.result.split("\n"))
-							json[filesName] = e.target.result.split("\n");
-							xiala();
-							var d =new Date();
-							
-							span.innerHTML = d.toLocaleTimeString() +"成功导入（更新）:     "+ theFile.name+"</br>";
-							document.getElementById('list').insertBefore(span, null);
-						};
-					})(f);
-					reader.readAsText(f,'gb2312');
+				var myFunction = function () {
+					var n = 0; //随机数最小值
+					var m = json[banji2].length; // 随机数最大值
+					var i = parseInt(Math.random() * (m - n) + n);
+					var id = json[banji2][i];
+					// document.getElementById("names").innerHTML = json[banji][i];
+					$("#" + id).addClass("newactive");
+					$("#" + id).siblings().removeClass("newactive");
+					if (speed > 30) {
+						clearInterval(t);
+						speed = speed/1.25; //speed-- 一定要在clearInterval之后执行
+						console.log(speed)
+						t = setInterval(myFunction, speed);
+					}
 				}
+				t = setInterval(myFunction, speed);
+			} else {
+				// 结束抽奖
+				clearInterval(t);
+				console.log("nihao"+speed)
+				var speed = 20;
+				var myFunction = function () {
+					var n = 0; //随机数最小值
+					var m = json[banji2].length; // 随机数最大值
+					var i = parseInt(Math.random() * (m - n) + n);
+					var id = json[banji2][i];
+					// document.getElementById("names").innerHTML = json[banji][i];
+					$("#" + id).addClass("newactive");
+					$("#" + id).siblings().removeClass("newactive");
+					if (speed < 300) {
+						clearInterval(t);
+						speed = speed*1.25; //speed-- 一定要在clearInterval之后执行
+						console.log(speed)
+						t = setInterval(myFunction, speed);
+					} else {
+						clearInterval(t);
+					}
+				}
+				t = setInterval(myFunction, speed);
+				document.getElementById('switch2').innerHTML = "开始";
 			}
-			function showJSON() {
-				document.getElementById('json').innerHTML = "";
-				setTimeout( function(){
-					document.getElementById('json').innerHTML = JSON.stringify(json);
-				}, 100 );
-				
-			}
+		}
 
-			</script>
-	</body>
+
+
+
+		// 导入文件处理
+		function handleFileSelect(event) {
+			var files = event.target.files; // FileList object
+
+			for (var i = 0, f; f = files[i]; i++) {
+				var reader = new FileReader();
+				reader.onload = (function (theFile) {
+					return function (e) {
+						var span = document.createElement('span');
+						var filesName = theFile.name;
+						console.log(e.target.result.split("\n"))
+						json[filesName] = e.target.result.split("\n");
+						xiala();
+						var d = new Date();
+
+						span.innerHTML = d.toLocaleTimeString() + "成功导入（更新）:     " + theFile.name + "</br>";
+						document.getElementById('list').insertBefore(span, null);
+					};
+				})(f);
+				reader.readAsText(f, 'gb2312');
+			}
+		}
+		// 打印json数据到页面上
+		function showJSON() {
+			document.getElementById('json').innerHTML = "";
+			setTimeout(function () {
+				document.getElementById('json').innerHTML = JSON.stringify(json);
+			}, 100);
+
+		}
+	</script>
+</body>
+
 </html>
